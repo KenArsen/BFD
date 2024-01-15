@@ -1,0 +1,68 @@
+[
+  {
+    "model": "card.card",
+    "pk": 1,
+    "fields": {
+      "company_name": "Motion Web",
+      "contact_number": "0706484681",
+      "mc_dot_number": "123",
+      "number_or_trucks": 1,
+      "fuel_cards_register": "1342",
+      "mailing_address": "724211",
+      "address_line_2": "724213",
+      "city": "Bishkek",
+      "state": "married",
+      "zip_code": "45",
+      "primary_contact_info": "1w",
+      "title": "Truck",
+      "phone_number": "0551551759",
+      "email_address": "tan.me4nik@gmail.com",
+      "file": "files/views.py",
+      "signature": "signature/Screenshot_from_2024-01-10_14-18-07_djEYzyP.png"
+    }
+  },
+  {
+    "model": "card.card",
+    "pk": 2,
+    "fields": {
+      "company_name": "InTech",
+      "contact_number": "9847532",
+      "mc_dot_number": "21",
+      "number_or_trucks": 22,
+      "fuel_cards_register": "safd",
+      "mailing_address": "asdf",
+      "address_line_2": "dsf",
+      "city": "sadf",
+      "state": "asd",
+      "zip_code": "asdf",
+      "primary_contact_info": "sadfdsafsf",
+      "title": "asdf",
+      "phone_number": "asdf",
+      "email_address": "tan.me4nik@gmail.com",
+      "file": "files/Загрузка_нескольких_файлов_в_DRF.pdf",
+      "signature": "signature/Screenshot_from_2024-01-10_14-18-07_FvWpbF2.png"
+    }
+  },
+  {
+    "model": "card.card",
+    "pk": 3,
+    "fields": {
+      "company_name": "Motion Web",
+      "contact_number": "0706484681",
+      "mc_dot_number": "123",
+      "number_or_trucks": 2,
+      "fuel_cards_register": "1342",
+      "mailing_address": "Talas",
+      "address_line_2": "724213",
+      "city": "Osh",
+      "state": "married",
+      "zip_code": "45",
+      "primary_contact_info": "1w",
+      "title": "Truck",
+      "phone_number": "0551551759",
+      "email_address": "tan.me4nik@gmail.com",
+      "file": "files/data.html",
+      "signature": "signature/Screenshot_from_2024-01-10_14-18-07_CURvIqt.png"
+    }
+  }
+]

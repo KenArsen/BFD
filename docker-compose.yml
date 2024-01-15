@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=card_db
+      - POSTGRES_USER=card_user
+      - POSTGRES_PASSWORD=12345
+#    env_file:
+#      - .env

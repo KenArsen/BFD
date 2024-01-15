@@ -1,0 +1,17 @@
+DEBUG=True
+SECRET_KEY=django-insecure-fk2qc5m1$(*kt=y&q=-6=j3d*a)sm&s%i*o$f8p8oi%ha#!4f)
+DOMAIN_NAME=http://127.0.0.1:8000
+
+DATABASE_NAME=card_db
+DATABASE_USER=card_user
+DATABASE_PASSWORD=12345
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_HOST_USER=arsen.kenjegulov.bj@gmail.com
+EMAIL_HOST_PASSWORD=mmwyoujemoepmpji
+EMAIL_USE_TLS=True
+EMAIL_USE_SSL=False
+
