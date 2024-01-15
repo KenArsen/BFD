@@ -59,7 +59,7 @@ def send_email(card):
         subject=card.company_name,
         body=plain_message.strip(),
         from_email=settings.EMAIL_HOST_USER,
-        to=['agentbfd@gmail.com'],
+        to=['Sales@bfd.com'],
     )
 
     # Attach the file

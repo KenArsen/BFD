@@ -24,7 +24,7 @@ env = environ.Env(
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-environ.Env.read_env(BASE_DIR / '.env')
+environ.Env.read_env(BASE_DIR / '.envLocal')
 
 SECRET_KEY = env('SECRET_KEY')
 
@@ -110,10 +110,10 @@ USE_TZ = True
 
 # static
 STATIC_URL = '/static/'
-# if DEBUG:
-#     STATICFILES_DIRS = [BASE_DIR, 'static', ]
-# else:
-STATIC_ROOT = BASE_DIR / 'static'
+if DEBUG:
+    STATICFILES_DIRS = [BASE_DIR, 'static', ]
+else:
+    STATIC_ROOT = BASE_DIR / 'static'
 
 # media
 MEDIA_URL = 'media/'
