@@ -110,8 +110,9 @@ USE_TZ = True
 
 # static
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [BASE_DIR, 'static',]
-
+# if DEBUG:
+#     STATICFILES_DIRS = [BASE_DIR, 'static', ]
+# else:
 STATIC_ROOT = BASE_DIR / 'static'
 
 # media
