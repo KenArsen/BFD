@@ -6,7 +6,7 @@ import environ
 env = environ.Env(
     DEBUG=(bool),
     SECRET_KEY=(str),
-    ALLOWED_HOSTS=(str),
+    ALLOWED_HOSTS=[str],
 
     DATABASE_NAME=(str),
     DATABASE_USER=(str),
@@ -30,7 +30,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
