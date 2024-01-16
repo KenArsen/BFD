@@ -5,7 +5,6 @@ from django.utils.html import strip_tags
 from django.conf import settings
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from .models import Card
 from .serializers import CardSerializer
 
@@ -49,6 +48,9 @@ class CardDelete(generics.DestroyAPIView):
     queryset = Card.objects.all()
     serializer_class = CardSerializer
 
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
 
 # Email
 def send_email(card):
@@ -59,7 +61,8 @@ def send_email(card):
         subject=card.company_name,
         body=plain_message.strip(),
         from_email=settings.EMAIL_HOST_USER,
-        to=['Sales@bfd.com'],
+        # to=['Sales@bfd.com'],
+        to=['tan.me4nik@gmail.com'],
     )
 
     # Attach the file
