@@ -13,8 +13,8 @@ services:
   db:
     image: postgres
     environment:
-      - POSTGRES_DB=card_db
-      - POSTGRES_USER=card_user
-      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=bfd_backend_db
+      - POSTGRES_USER=bfduser
+      - POSTGRES_PASSWORD=bfdbackend2023
 #    env_file:
 #      - .env
