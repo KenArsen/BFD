@@ -24,7 +24,7 @@ env = environ.Env(
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-environ.Env.read_env(BASE_DIR / '.env')
+environ.Env.read_env(BASE_DIR / '.envLocal')
 
 SECRET_KEY = env('SECRET_KEY')
 
@@ -32,7 +32,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
 
-DOMAIN_NAME = env('DOMAIN_NAME')
+# DOMAIN_NAME = env('DOMAIN_NAME')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
