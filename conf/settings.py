@@ -6,7 +6,7 @@ import environ
 env = environ.Env(
     DEBUG=(bool),
     SECRET_KEY=(str),
-    DOMAIN_NAME=(str),
+    ALLOWED_HOSTS=(str),
 
     DATABASE_NAME=(str),
     DATABASE_USER=(str),
@@ -30,7 +30,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['*.teamone.inclusivetec.com', '0.0.0.0', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
