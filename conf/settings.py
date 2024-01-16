@@ -30,9 +30,9 @@ SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*.teamone.inclusivetec.com', '0.0.0.0', 'localhost', '127.0.0.1']
 
-DOMAIN_NAME = env('DOMAIN_NAME')
+# DOMAIN_NAME = env('DOMAIN_NAME')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -112,8 +112,7 @@ USE_TZ = True
 
 # static
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR, 'static', ]
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'static'
 
 # media
 MEDIA_URL = 'media/'

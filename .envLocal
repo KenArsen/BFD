@@ -1,4 +1,4 @@
-DEBUG=True
+DEBUG=False
 SECRET_KEY=django-insecure-fk2qc5m1$(*kt=y&q=-6=j3d*a)sm&s%i*o$f8p8oi%ha#!4f)
 
 DATABASE_NAME=card_db
