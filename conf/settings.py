@@ -105,10 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-SWAGGER_SETTINGS = {
-    'VALIDATOR_URL': 'http://localhost:8189',
-}
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
