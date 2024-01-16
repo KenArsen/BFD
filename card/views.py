@@ -77,3 +77,5 @@ def send_email(card):
 
     # Send email
     email.send()
+
+    return Response({"status": "OK"}, status=status.HTTP_200_OK)

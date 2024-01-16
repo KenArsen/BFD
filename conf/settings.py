@@ -1,6 +1,5 @@
 import os.path
 from pathlib import Path
-
 import environ
 
 env = environ.Env(
@@ -54,10 +53,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-REST_FRAMEWORK = {
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-}
 
 ROOT_URLCONF = 'conf.urls'
 
@@ -115,7 +110,7 @@ USE_TZ = True
 
 # static
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # media
 MEDIA_URL = 'media/'
