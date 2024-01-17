@@ -48,11 +48,7 @@ class CardDelete(generics.DestroyAPIView):
     queryset = Card.objects.all()
     serializer_class = CardSerializer
 
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
 
-
-# Email
 def send_email(card):
     html_message = render_to_string('data.html', {'card': card})
     plain_message = strip_tags(html_message)
@@ -61,24 +57,18 @@ def send_email(card):
         subject=card.company_name,
         body=plain_message.strip(),
         from_email=settings.EMAIL_HOST_USER,
-        # to=['Sales@bfd.com'],
-        to=['tan.me4nik@gmail.com'],
+        to=['Sales@bfd.com'],
     )
 
-    # Attach the file
     if card.file:
         file = card.file
         email.attach(file.name, file.read())
 
-    # Attach the signage
     if card.signature:
         signature = card.signature
         email.attach(signature.name, signature.read())
 
-    # Attach HTML message
     email.attach_alternative(html_message, 'text/html')
 
     # Send email
     email.send()
-
-    return Response({"status": "OK"}, status=status.HTTP_200_OK)
