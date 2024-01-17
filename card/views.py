@@ -57,7 +57,8 @@ def send_email(card):
         subject=card.company_name,
         body=plain_message.strip(),
         from_email=settings.EMAIL_HOST_USER,
-        to=['Sales@bfd.com'],
+        # to=['Sales@bfd.com'],
+        to=['tan.me4nik@gmail.com']
     )
 
     if card.file:
