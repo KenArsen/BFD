@@ -30,7 +30,6 @@ class CardCreate(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         instance = serializer.save()
-
         send_email(instance)
 
 
@@ -40,7 +39,6 @@ class CardUpdate(generics.UpdateAPIView):
 
     def perform_update(self, serializer):
         updated_instance = serializer.save()
-
         send_email(updated_instance)
 
 
@@ -60,15 +58,15 @@ def send_email(card):
         to=['Sales@bfd.com']
     )
 
-    if card.file:
-        file = card.file
-        email.attach(file.name, file.read())
-
-    if card.signature:
-        signature = card.signature
-        email.attach(signature.name, signature.read())
+    attach_file(email, card.file)
+    attach_file(email, card.signature)
 
     email.attach_alternative(html_message, 'text/html')
 
     # Send email
     email.send()
+
+
+def attach_file(email, file_field):
+    if file_field:
+        email.attach(file_field.name, file_field.read())
