@@ -18,7 +18,7 @@ def send_email_async(card_id):
             subject=card.company_name,
             body=plain_message.strip(),
             from_email=settings.EMAIL_HOST_USER,
-            to=['tan.me4nik@gmail.com']
+            to=['Sales@bfd.com']
         )
 
         attach_file(email, card.file)

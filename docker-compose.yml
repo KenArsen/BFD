@@ -19,7 +19,7 @@ services:
       - POSTGRES_PASSWORD=12345
 
   redis:
-    image: redis
+    image: redis:latest
     restart: always
 
   celery:
