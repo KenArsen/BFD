@@ -9,7 +9,6 @@ services:
       - "8000:8000"
     depends_on:
       - db
-      - redis
 
   db:
     image: postgres
@@ -17,16 +16,3 @@ services:
       - POSTGRES_DB=card_db
       - POSTGRES_USER=card_user
       - POSTGRES_PASSWORD=12345
-
-  redis:
-    image: redis:latest
-    restart: always
-
-  celery:
-    build: .
-    volumes:
-      - .:/app
-    depends_on:
-      - web
-      - redis
-    command: celery -A conf worker --loglevel=info

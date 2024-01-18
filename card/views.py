@@ -1,10 +1,13 @@
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Card
 from .serializers import CardSerializer
-from .tasks import send_email_async
 
 
 class HealthCheckView(APIView):
@@ -28,7 +31,7 @@ class CardCreate(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         instance = serializer.save()
-        send_email_async.delay(instance.pk)
+        send_email(instance)
 
 
 class CardUpdate(generics.UpdateAPIView):
@@ -37,9 +40,34 @@ class CardUpdate(generics.UpdateAPIView):
 
     def perform_update(self, serializer):
         updated_instance = serializer.save()
-        send_email_async.delay(updated_instance.pk)
+        send_email(updated_instance)
 
 
 class CardDelete(generics.DestroyAPIView):
     queryset = Card.objects.all()
     serializer_class = CardSerializer
+
+
+def send_email(card):
+    html_message = render_to_string('data.html', {'card': card})
+    plain_message = strip_tags(html_message)
+
+    email = EmailMultiAlternatives(
+        subject=card.company_name,
+        body=plain_message.strip(),
+        from_email=settings.EMAIL_HOST_USER,
+        to=['Sales@bfd.com']
+    )
+
+    attach_file(email, card.file)
+    attach_file(email, card.signature)
+
+    email.attach_alternative(html_message, 'text/html')
+
+    # Send email
+    email.send()
+
+
+def attach_file(email, file_field):
+    if file_field:
+        email.attach(file_field.name, file_field.read())
