@@ -1,6 +1,5 @@
 # Use the official Python image as a base image
 FROM public.ecr.aws/docker/library/python:3.10
-#FROM python:3.10
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
