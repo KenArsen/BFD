@@ -1,5 +1,6 @@
 #!/bin/sh
-exec /bin/sh -c "python manage.py migrate && \
+exec /bin/sh -c "python makemigrations --no-input && \
+      python manage.py migrate && \
       python manage.py collectstatic --no-input && \
       gunicorn --bind :8000 conf.wsgi:application"
 

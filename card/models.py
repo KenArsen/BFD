@@ -7,7 +7,7 @@ class Card(models.Model):
     company_name = models.CharField(max_length=155)
     contact_number = models.CharField(max_length=100, blank=False, null=False)
     mc_dot_number = models.CharField(max_length=155, blank=False, null=False)
-    number_or_trucks = models.PositiveSmallIntegerField(default=0, blank=False, null=False)
+    number_of_trucks = models.IntegerField(default=0, blank=False, null=False)
     fuel_cards_register = models.CharField(max_length=100, blank=False, null=False)
     mailing_address = models.CharField(max_length=100, blank=False, null=False)
     address_line = models.CharField(max_length=100, blank=False, null=False)
