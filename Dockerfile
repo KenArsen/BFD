@@ -11,7 +11,7 @@ WORKDIR /app
 COPY requirements.txt /app/
 
 # Install project dependencies
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY commands.sh /app/
 RUN chmod +x /app/commands.sh
