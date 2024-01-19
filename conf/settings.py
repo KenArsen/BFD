@@ -3,7 +3,11 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv('.env')
+if os.path.exists('.envLocal'):
+    load_dotenv('.envLocal')
+else:
+    load_dotenv('.env')
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')

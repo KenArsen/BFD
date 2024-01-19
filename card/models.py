@@ -5,7 +5,7 @@ from django.db import models
 
 class Card(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    company_name = models.CharField(max_length=255, blank=False, null=False)
+    company_name = models.CharField(max_length=255, blank=True)
     contact_number = models.CharField(max_length=255, blank=False, null=False)
     mc_dot_number = models.CharField(max_length=255, blank=False, null=False)
     number_of_trucks = models.IntegerField(blank=False, null=False)
@@ -19,8 +19,8 @@ class Card(models.Model):
     title = models.CharField(max_length=255, blank=False, null=False)
     phone_number = models.CharField(max_length=255, blank=False, null=False)
     email_address = models.EmailField(max_length=255, blank=False, null=False)
-    file = models.FileField(upload_to='files/', blank=False, null=False)
-    signature = models.ImageField(upload_to='signature/', blank=False, null=False)
+    file = models.FileField(upload_to='files/', blank=False, null=False, max_length=500)
+    signature = models.ImageField(upload_to='signature/', blank=False, null=False, max_length=500)
 
     def __str__(self):
         return self.company_name
