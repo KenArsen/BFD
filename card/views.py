@@ -1,3 +1,4 @@
+import os
 import zipfile
 from io import BytesIO
 
@@ -55,10 +56,11 @@ class CardDelete(generics.DestroyAPIView):
 
 
 def send_email(card):
+
     zip_buffer = BytesIO()
     with zipfile.ZipFile(zip_buffer, 'w') as zip_file:
-        zip_file.write(card.file.path, arcname='card_file.txt')
-        zip_file.write(card.signature.path, arcname='card_signature.png')
+        zip_file.write(card.file.path, arcname=os.path.basename(card.file.path))
+        zip_file.write(card.signature.path, arcname=os.path.basename(card.signature.path))
 
     zip_buffer.seek(0)
 
@@ -79,3 +81,4 @@ def send_email(card):
 def attach_file(email, file_field):
     if file_field:
         email.attach(file_field.name, file_field.file.read())
+
