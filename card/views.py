@@ -1,10 +1,13 @@
+import zipfile
+from io import BytesIO
+
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from rest_framework import generics, status
-from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Card
@@ -52,25 +55,27 @@ class CardDelete(generics.DestroyAPIView):
 
 
 def send_email(card):
-    html_message = render_to_string('data.html', {'card': card})
-    plain_message = strip_tags(html_message)
+    zip_buffer = BytesIO()
+    with zipfile.ZipFile(zip_buffer, 'w') as zip_file:
+        zip_file.write(card.file.path, arcname='card_file.txt')
+        zip_file.write(card.signature.path, arcname='card_signature.png')
+
+    zip_buffer.seek(0)
 
     email = EmailMultiAlternatives(
         subject=card.company_name,
-        body=plain_message.strip(),
+        body=strip_tags(render_to_string('data.html', {'card': card})),
         from_email=settings.EMAIL_HOST_USER,
         to=['Sales@bfd.com']
     )
 
-    attach_file(email, card.file)
-    attach_file(email, card.signature)
+    email.attach('file_and_signature.zip', zip_buffer.read(), 'application/zip')
 
-    email.attach_alternative(html_message, 'text/html')
+    email.attach_alternative(render_to_string('data.html', {'card': card}), 'text/html')
 
-    # Send email
     email.send()
 
 
 def attach_file(email, file_field):
     if file_field:
-        email.attach(file_field.name, file_field.read())
+        email.attach(file_field.name, file_field.file.read())

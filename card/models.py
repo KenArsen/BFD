@@ -11,7 +11,6 @@ class Card(models.Model):
     number_of_trucks = models.IntegerField(blank=False, null=False)
     fuel_cards_register = models.CharField(max_length=255, blank=False, null=False)
     mailing_address = models.CharField(max_length=255, blank=False, null=False)
-    address_line = models.CharField(max_length=255, blank=False, null=False)
     city = models.CharField(max_length=255, blank=False, null=False)
     state = models.CharField(max_length=255, blank=False, null=False)
     zip_code = models.CharField(max_length=255, blank=False, null=False)
