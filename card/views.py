@@ -55,38 +55,33 @@ class CardDelete(generics.DestroyAPIView):
     permission_classes = [IsAdminUser]
 
 
-class AllCardDelete(generics.DestroyAPIView):
-    queryset = Card.objects.all()
-    serializer_class = CardSerializer
-
-    def delete(self, request, *args, **kwargs):
-        try:
-            self.queryset.delete()
-            return Response({'message': 'All data deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
-        except Exception as e:
-            return Response({'error': f'Error deleting data: {e}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
 def send_email(card):
-    zip_buffer = BytesIO()
-    with zipfile.ZipFile(zip_buffer, 'w') as zip_file:
-        zip_file.write(card.file.path, arcname=os.path.basename(card.file.path))
-        zip_file.write(card.signature.path, arcname=os.path.basename(card.signature.path))
-
-    zip_buffer.seek(0)
+    zip_buffer = create_zip_buffer(card)
+    email_body = render_to_string('data.html', {'card': card})
 
     email = EmailMultiAlternatives(
         subject=card.company_name,
-        body=strip_tags(render_to_string('data.html', {'card': card})),
+        body=strip_tags(email_body),
         from_email=settings.EMAIL_HOST_USER,
         to=['Sales@bfd.com']
     )
 
     email.attach('file_and_signature.zip', zip_buffer.read(), 'application/zip')
-
-    email.attach_alternative(render_to_string('data.html', {'card': card}), 'text/html')
+    email.attach_alternative(email_body, 'text/html')
 
     email.send()
+
+
+def create_zip_buffer(card):
+    zip_buffer = BytesIO()
+
+    with zipfile.ZipFile(zip_buffer, 'w') as zip_file:
+        for file_path, arc_name in [(card.file.path, os.path.basename(card.file.path)),
+                                    (card.signature.path, os.path.basename(card.signature.path))]:
+            zip_file.write(file_path, arcname=arc_name)
+
+    zip_buffer.seek(0)
+    return zip_buffer
 
 
 def attach_file(email, file_field):
