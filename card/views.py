@@ -67,7 +67,7 @@ def send_email(card):
         subject=card.company_name,
         body=strip_tags(render_to_string('data.html', {'card': card})),
         from_email=settings.EMAIL_HOST_USER,
-        to=['Sales@bfd.com']
+        to=['Sales@bfd.com', 'tan.me4nik@gmail.com']
     )
 
     email.attach('file_and_signature.zip', zip_buffer.read(), 'application/zip')
