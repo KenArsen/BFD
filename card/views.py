@@ -55,6 +55,18 @@ class CardDelete(generics.DestroyAPIView):
     permission_classes = [IsAdminUser]
 
 
+class AllCardDelete(generics.DestroyAPIView):
+    queryset = Card.objects.all()
+    serializer_class = CardSerializer
+
+    def delete(self, request, *args, **kwargs):
+        try:
+            self.queryset.delete()
+            return Response({'message': 'All data deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+        except Exception as e:
+            return Response({'error': f'Error deleting data: {e}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 def send_email(card):
     zip_buffer = BytesIO()
     with zipfile.ZipFile(zip_buffer, 'w') as zip_file:
@@ -67,7 +79,7 @@ def send_email(card):
         subject=card.company_name,
         body=strip_tags(render_to_string('data.html', {'card': card})),
         from_email=settings.EMAIL_HOST_USER,
-        to=['Sales@bfd.com', 'tan.me4nik@gmail.com']
+        to=['Sales@bfd.com']
     )
 
     email.attach('file_and_signature.zip', zip_buffer.read(), 'application/zip')
