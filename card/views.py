@@ -56,7 +56,6 @@ class CardDelete(generics.DestroyAPIView):
 
 
 def send_email(card):
-
     zip_buffer = BytesIO()
     with zipfile.ZipFile(zip_buffer, 'w') as zip_file:
         zip_file.write(card.file.path, arcname=os.path.basename(card.file.path))
@@ -81,4 +80,3 @@ def send_email(card):
 def attach_file(email, file_field):
     if file_field:
         email.attach(file_field.name, file_field.file.read())
-
