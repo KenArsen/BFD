@@ -89,6 +89,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://localhost:5174",
+    "http://localhost:5173",
     "https://teamone.inclusivetec.com",
 ]
 
