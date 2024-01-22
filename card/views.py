@@ -3,33 +3,16 @@ import zipfile
 from io import BytesIO
 
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from rest_framework import generics, status
-from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Card
-from .serializers import CardSerializer, UserSerializer
-
-
-@api_view(["GET"])
-def users_list(request):
-    User = get_user_model()
-    lessons = User.objects.all()
-    serializer = UserSerializer(lessons, many=True)
-    return Response(serializer.data)
-
-
-@api_view(["DELETE"])
-def users_delete(request):
-    User = get_user_model()
-    User.objects.all().delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
+from .serializers import CardSerializer
 
 
 class HealthCheckView(APIView):

@@ -1,4 +1,5 @@
 from django.urls import path
+
 from card import views
 
 urlpatterns = [
@@ -8,6 +9,4 @@ urlpatterns = [
     path('cards/<uuid:pk>/update', views.CardUpdate.as_view(), name='card-update'),
     path('cards/<uuid:pk>/delete/', views.CardDelete.as_view(), name='card-delete'),
     path('healthcheck/', views.HealthCheckView.as_view(), name='healthcheck'),
-    path('users/', views.users_list, name='users-list'),
-    path('users/delete', views.users_delete, name='users-delete'),
 ]
