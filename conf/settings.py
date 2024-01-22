@@ -13,7 +13,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = os.getenv('DEBUG') == 'True'
-print(DEBUG)
 
 ALLOWED_HOSTS = list(os.getenv('ALLOWED_HOSTS'))
 
