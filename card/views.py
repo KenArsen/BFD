@@ -25,6 +25,13 @@ def users_list(request):
     return Response(serializer.data)
 
 
+@api_view(["DELETE"])
+def users_delete(request):
+    User = get_user_model()
+    User.objects.all().delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 class HealthCheckView(APIView):
     def get(self, request, *args, **kwargs):
         return Response({"status": "OK"}, status=status.HTTP_200_OK)
