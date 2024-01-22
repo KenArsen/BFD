@@ -13,5 +13,4 @@ class CardSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        # fields = ('username', 'email', 'password')
-        fields = '__all__'
+        fields = ('username', 'email', 'password')
