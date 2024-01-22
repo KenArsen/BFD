@@ -1,0 +1,8 @@
+.idea/
+venv/
+.envLocal
+media/
+db.sqlite3
+/staticfiles
+/static/
+__pyc__/
