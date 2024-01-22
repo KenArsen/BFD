@@ -92,7 +92,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5174",
     "http://localhost:5173",
     "https://teamone.inclusivetec.com",
-    "https://teamone.inclusivetec.com",
 ]
 
 CORS_ALLOW_METHODS = [
@@ -130,8 +129,3 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == "True"
 EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL", "False") == "True"
-
-CSRF_COOKIE_DOMAIN = 'teamone.inclusivetec.com'
-
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
